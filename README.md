@@ -69,8 +69,11 @@ In this tutorial, we will only cover on how to operate within VSCode Instance.
 For this and succeeding exercises we will be using **thelook_ecommerce** [dataset](https://console.cloud.google.com/marketplace/product/bigquery-public-data/thelook-ecommerce?project=gid-dataops-labs). Exercises are meant to slowly build upon data available in the dataset
 and arrange transformations into staging (bronze), intermediate (silver) and presentation (gold) layers in dwh.
 
-thelook_ecommerce dataset is organized as 7 tables: ![]
-<img width="317" alt="Screenshot 2022-09-05 at 15 59 41" src="https://user-images.githubusercontent.com/77925576/188466518-2e342f7a-6c5b-4c00-b956-bf1cee9093bb.png">
+thelook_ecommerce dataset is organized as 7 tables:
+
+ ![Screenshot1](https://user-images.githubusercontent.com/77925576/188466518-2e342f7a-6c5b-4c00-b956-bf1cee9093bb.png)
+
+
 Here, we will start by seeding data into dwh.
 
 
