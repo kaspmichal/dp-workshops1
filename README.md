@@ -67,13 +67,47 @@ In this tutorial, we will only cover on how to operate within VSCode Instance.
 ## Loading data to dwh with dbt seed
 
 For this and succeeding exercises we will be using **thelook_ecommerce** [dataset](https://console.cloud.google.com/marketplace/product/bigquery-public-data/thelook-ecommerce?project=gid-dataops-labs). Exercises are meant to slowly build upon data available in the dataset
-and arrange transformations into staging (bronze), intermediate (silver) and presentation (gold) layers in dwh.
+and organize transformations into staging (bronze), intermediate (silver) and presentation (gold) layers in dwh.
 
-thelook_ecommerce dataset is organized as 7 tables: ![](../../../var/folders/w_/g7pk42215d3_12jkm76_0y900000gn/T/TemporaryItems/NSIRD_screencaptureui_NO0tVI/Screenshot 2022-09-05 at 15.49.14.png)
-Here, we will start by seeding data into dwh.
+thelook_ecommerce dataset is arranged in 7 tables: ![](../../../var/folders/w_/g7pk42215d3_12jkm76_0y900000gn/T/TemporaryItems/NSIRD_screencaptureui_NO0tVI/Screenshot 2022-09-05 at 15.49.14.png)
+It is a dataset which resembles a typical ecommerce shop data warehouse, with events, orders, inventory_items and users facts tables and 2 dim tables: distribution_centers and order_items.
+Those tables could've been extracted from different companies' backend applications' databases and collected to a single schema.  
 
-We will extend the dataset with our customary data and put it into the new table called:
-1. To up some seeds to load your static data to warehouse. You need to provide .yml file with a definition, and a .csv with actual data to be loaded in. Put them under `seeds` directory. You can make additional directories inside `seeds` for clarity.
+Here, we will want to extend this dataset by "seeding" (loading) additional data into dwh.
+This additional data is a static mapping table **mapping_tracking** and was sent to you by someone from the software department
+in the form of csv file. This table contains information about software that had been used throughout company's history to track users' behavior across different user sessions and will help prepare a transformation leading to the
+final requested dashboard. The mapping is between **browser_name** and **browser** in `events` table ('Chrome', 'IE', 'Safari'..)
 
->-> Tip: you can find documentation on seeds on https://docs.getdbt.com/docs/building-a-dbt-project/seeds
+To load this data into the warehouse, you will use dbt command called `dbt seed` by executing `dp seed` in the main project directory.
+1. You need to set up a .yml file which will serve as a definition of this new table. You need to provide .yml file with the name of the table i.e. mapping_tracking.yml. Put it under `seeds` directory of your dbt project. You can make additional directories inside `seeds` for clarity.
+>-> Tip: you can find documentation on seeds with examples at https://docs.getdbt.com/docs/building-a-dbt-project/seeds
+2. Create a csv file of the exact same name as the .yml file i.e mapping_tracking.csv and copy+paste the data there from a file inside this repository.
+3. Execute `dp seed`
+4. You should now have a mapping_tracking table inside your personal working schema.
+
+## Basic SQL transformation using dp run
+
+Using our freshly supplied data we can now prepare a basic dbt transformation which will reside
+inside the `models` directory of the project. A model is a `SELECT` statement inside .sql file which paired with a definition
+from corresponding .yml file together allows to materialize an object (table, view..) inside the dwh.
+
+1. The request for a dashboard was to investigate how many events entries are in the `events` table for every pair 'browser-tracking software' app.
+2. The task for you is to finish the query below, insert it into SQL file
+3. Create and fill in a .yml file which corresponds to the SQL with column names and description
+````
+with mapping_tracking_converted_unix_epochs as (
+select id, 
+      app_name, 
+      browser_name, 
+      date_from, 
+      case when date_to = 'current' then null else date_to end as date_to 
+from `dataops-test-project.username_private_working_schema.mapping_tracking`
+
+)
+
+SELECT distinct(concat(app_name, browser)), 
+timestamp_seconds(date_from) as date_from, 
+case when date_to != 'null' then timestamp_seconds(cast (date_to as int64)) else current_timestamp end as date_to
+  FROM mapping_tracking_converted_unix_epochs a 
+  INNER JOIN `dataops-test-project.thelook_ecommerce.events` b on a.browser_name=b.browser;
 

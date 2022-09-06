@@ -1,0 +1,11 @@
+id,app_name,browser_name,date_from,date_to
+1,GoogleAnalytics,Chrome,1335841200,1609473600
+2,Segment,Chrome,1609473601,null
+3,iTracker,Safari,1335841200,1420084800
+4,SuperSafariTracker,Safari,1420084801,1609473600
+5,Segment,Safari,1609473601,null
+6,Macrotrack,IE,1335841200,1404183600
+7,GoogleAnalytics,IE,1404183601,1609473600
+8,Segment,IE,1609473601,null
+9,Macrotrack,Firefox,1335841200,null
+9,Macrotrack,Other,1335841200,null
