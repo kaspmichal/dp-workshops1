@@ -60,7 +60,7 @@ In this tutorial, we will only cover on how to operate within VSCode Instance.
 
 >-> Tip: Example of provided values
 > 
->![](../../../var/folders/w_/g7pk42215d3_12jkm76_0y900000gn/T/TemporaryItems/NSIRD_screencaptureui_y7pJ42/Screenshot 2022-09-05 at 14.43.57.png)
+>![](https://user-images.githubusercontent.com/77925576/165175393-660a9fec-9a07-4179-93bd-abd337f9d285.png)
 
 
 7. Your environment is now ready to execute some dbt code against BigQuery dwh!
