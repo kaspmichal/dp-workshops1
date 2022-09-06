@@ -103,7 +103,7 @@ select id,
       browser_name, 
       date_from, 
       case when date_to = 'current' then null else date_to end as date_to 
-from `dataops-test-project.username_private_working_schema.mapping_tracking`
+from `<workshop_project>.<mapping_schema>.mapping_tracking`
 
 )
 
@@ -111,5 +111,5 @@ SELECT distinct(concat(app_name, browser)),
 timestamp_seconds(date_from) as date_from, 
 case when date_to != 'null' then timestamp_seconds(cast (date_to as int64)) else current_timestamp end as date_to
   FROM mapping_tracking_converted_unix_epochs a 
-  INNER JOIN `dataops-test-project.thelook_ecommerce.events` b on a.browser_name=b.browser;
+  INNER JOIN `<workshop_project>.thelook_ecommerce.events` b on a.browser_name=b.browser;
 
