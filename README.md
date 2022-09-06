@@ -85,6 +85,7 @@ To load this data into the warehouse, you will use dbt command called `dbt seed`
 2. Create a csv file of the exact same name as the .yml file i.e mapping_tracking.csv and copy+paste the data there from a file inside this repository.
 3. Execute `dp seed`
 4. You should now have a mapping_tracking table inside your personal working schema.
+![Screenshot1](https://user-images.githubusercontent.com/77925576/188682826-085d84ca-c83c-43aa-9e87-c4ec3ce0e3bb.png)
 
 ## Basic SQL transformation using dp run
 
