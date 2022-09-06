@@ -69,7 +69,7 @@ In this tutorial, we will only cover on how to operate within VSCode Instance.
 For this and succeeding exercises we will be using **thelook_ecommerce** [dataset](https://console.cloud.google.com/marketplace/product/bigquery-public-data/thelook-ecommerce?project=gid-dataops-labs). Exercises are meant to slowly build upon data available in the dataset
 and organize transformations into staging (bronze), intermediate (silver) and presentation (gold) layers in dwh.
 
-thelook_ecommerce dataset is arranged in 7 tables: ![](../../../var/folders/w_/g7pk42215d3_12jkm76_0y900000gn/T/TemporaryItems/NSIRD_screencaptureui_NO0tVI/Screenshot 2022-09-05 at 15.49.14.png)
+thelook_ecommerce dataset is arranged in 7 tables:  ![Screenshot1](https://user-images.githubusercontent.com/77925576/188466518-2e342f7a-6c5b-4c00-b956-bf1cee9093bb.png)
 It is a dataset which resembles a typical ecommerce shop data warehouse, with events, orders, inventory_items and users facts tables and 2 dim tables: distribution_centers and order_items.
 Those tables could've been extracted from different companies' backend applications' databases and collected to a single schema.  
 
