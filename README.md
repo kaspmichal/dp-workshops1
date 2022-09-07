@@ -3,7 +3,7 @@
 Welcome to the DataOps CLI Labs workshop repository #1. By the end of this tutorial, you will know how to:
 - configure and deploy GID DataOps CLI tool as a user-managed notebook in GCP Vertex AI environment
 - move around various DataOps tools in JupyterLab environment
-- load static seed data to the warehouse with the use of dbt
+- load static seed data to the warehouse with the use of `dp seed`
 - create a simple transformation and execute it using `dp run`
 
 Target environment will be Google Cloud Platform's: BigQuery, Vertex AI Managed Notebook, VSCode as IDE. This tutorial was written with GID DataOps 1.0.9 as a current release.
