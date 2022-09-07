@@ -15,13 +15,14 @@ Target environment will be Google Cloud Platform's: BigQuery, Vertex AI Managed 
 #TODO [Screen]
 
 2. Click on New Notebook located in the topbar and then "Customize..."
-   ![Screenshot 2022-04-25 at 22 33 26](https://user-images.githubusercontent.com/77925576/165170160-a08af36a-d022-4c5d-b5cd-a181576a6f76.png)
+   <img src="https://user-images.githubusercontent.com/77925576/165170160-a08af36a-d022-4c5d-b5cd-a181576a6f76.png">
 
 3. Type in notebook name (preferrably your first and last name).
 4. In environment section, choose Debian 10 and "Custom container"
 5. Provide a link to the GID DataOps CLI image: [gcr.io/getindata-images-public/jupyterlab-dataops:bigquery-1.0.9](gcr.io/getindata-images-public/jupyterlab-dataops:bigquery-1.0.9)
-   ![Screenshot 2022-04-25 at 22 42 09](https://user-images.githubusercontent.com/77925576/165171403-93633875-3f5c-429c-a40a-014a863cd10d.png)
-   #TODO [Screen]
+  
+<img src="https://user-images.githubusercontent.com/77925576/188915356-19d91e45-4115-40fc-bbd8-a2857993dddc.png" height="500" width="600">
+
 6. In machine configuration section, choose n1-standard-1 machine 1vCPU/3.75GB RAM (~0.044 USD / hour) #TODO
 7. Leave everything else on default. 
 8. Click on "Create Jupyter notebook".
@@ -70,7 +71,10 @@ In this tutorial, we will only cover on how to operate within VSCode Instance.
 For this and succeeding exercises we will be using **thelook_ecommerce** [dataset](https://console.cloud.google.com/marketplace/product/bigquery-public-data/thelook-ecommerce?project=gid-dataops-labs). Exercises are meant to slowly build upon data available in the dataset
 and organize transformations into staging (bronze), intermediate (silver) and presentation (gold) layers in dwh.
 
-thelook_ecommerce dataset is arranged in 7 tables:  ![Screenshot1](https://user-images.githubusercontent.com/77925576/188466518-2e342f7a-6c5b-4c00-b956-bf1cee9093bb.png)
+thelook_ecommerce dataset is arranged in 7 tables:  
+
+<img src="https://user-images.githubusercontent.com/77925576/188466518-2e342f7a-6c5b-4c00-b956-bf1cee9093bb.png" height="410" width="500">
+
 It is a dataset which resembles a typical ecommerce shop data warehouse, with events, orders, inventory_items and users facts tables and 2 dim tables: distribution_centers and order_items.
 Those tables could've been extracted from different companies' backend applications' databases and collected to a single schema.  
 
@@ -85,6 +89,7 @@ To load this data into the warehouse, you will use dbt command called `dbt seed`
 2. Create a csv file of the exact same name as the .yml file i.e mapping_tracking.csv and copy+paste the data there from a file inside this repository.
 3. Execute `dp seed`
 4. You should now have a mapping_tracking table inside your personal working schema.
+
 ![Screenshot1](https://user-images.githubusercontent.com/77925576/188682826-085d84ca-c83c-43aa-9e87-c4ec3ce0e3bb.png)
 
 ## Basic SQL transformation using dp run
