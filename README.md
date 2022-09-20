@@ -103,18 +103,27 @@ from corresponding .yml file together allows to materialize an object (table, vi
 3. Create and fill in a .yml file which corresponds to the SQL with column names and description
 ````
 with mapping_tracking_converted_unix_epochs as (
-select id, 
+   select 
+      id, 
       app_name, 
       browser_name, 
       date_from, 
       case when date_to = 'current' then null else date_to end as date_to 
-from `<workshop_project>.<mapping_schema>.mapping_tracking`
-
+   from `<workshop_project>.<mapping_schema>.mapping_tracking`
 )
-
-SELECT distinct(concat(app_name, browser)), 
-timestamp_seconds(date_from) as date_from, 
-case when date_to != 'null' then timestamp_seconds(cast (date_to as int64)) else current_timestamp end as date_to
-  FROM mapping_tracking_converted_unix_epochs a 
-  INNER JOIN `<workshop_project>.thelook_ecommerce.events` b on a.browser_name=b.browser;
-
+select
+   distinct(concat(app_name, browser)), 
+   timestamp_seconds(date_from) as date_from, 
+   case 
+      when date_to != 'null' then timestamp_seconds(cast (date_to as int64)) 
+      else current_timestamp 
+   end as date_to
+FROM mapping_tracking_converted_unix_epochs a 
+INNER JOIN `<workshop_project>.thelook_ecommerce.events` b on 
+   a.browser_name=b.browser;
+````
+### (Optional) Add generic test and description 
+[To do]
+### (Optional) Inspect lineage graph
+[To do]
+## 
