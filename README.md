@@ -11,17 +11,28 @@ Target environment will be Google Cloud Platform's: BigQuery, Vertex AI Managed 
 
 # Exercise
 ## Setting up environment
-1. Go to: https://console.cloud.google.com/vertex-ai?project=dataops-demo-prod&supportedpurview=project or to the Vertex AI Dashboard in your project and choose "Workbench" and then "User-managed notebooks"  
+1. Go to: https://console.cloud.google.com/welcome?project=datamass-mdp-workshop&supportedpurview=project or to the Vertex AI Dashboard in your project and choose "Workbench" and then "User-managed notebooks"
+<p align="center">
+<img src="https://user-images.githubusercontent.com/54064594/191755592-58e86b63-3cc2-4392-8c50-3be722ae1d2c.png" height="500" align="center">
+   
+<img src="https://user-images.githubusercontent.com/54064594/191755932-d96c6cad-7b8e-454e-abcc-50b4af7765f3.png" width="600" align="center">
+</p>
+
+
+
 #TODO [Screen]
 
 2. Click on New Notebook located in the topbar and then "Customize..."
-   <img src="https://user-images.githubusercontent.com/77925576/165170160-a08af36a-d022-4c5d-b5cd-a181576a6f76.png">
-
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/77925576/165170160-a08af36a-d022-4c5d-b5cd-a181576a6f76.png" align="center">
+</p>
 3. Type in notebook name (preferrably your first and last name).
 4. In environment section, choose Debian 10 and "Custom container"
 5. Provide a link to the GID DataOps CLI image: [gcr.io/getindata-images-public/jupyterlab-dataops:bigquery-1.0.9](gcr.io/getindata-images-public/jupyterlab-dataops:bigquery-1.0.9)
-  
-<img src="https://user-images.githubusercontent.com/77925576/188915356-19d91e45-4115-40fc-bbd8-a2857993dddc.png" height="500" width="600">
+<p align="center">
+<img width="539" alt="image" src="https://user-images.githubusercontent.com/54064594/191758015-10e4d023-5fe7-4f9c-8fa2-f6818ae20484.png" align="center">
+</p>
+<!-- <img src="https://user-images.githubusercontent.com/77925576/188915356-19d91e45-4115-40fc-bbd8-a2857993dddc.png" height="500" width="600"> -->
 
 6. In machine configuration section, choose n1-standard-1 machine 1vCPU/3.75GB RAM (~0.044 USD / hour) #TODO
 7. Leave everything else on default. 
@@ -49,11 +60,23 @@ In this tutorial, we will only cover on how to operate within VSCode Instance.
 
 ![Screenshot 2022-04-25 at 23 01 27](https://user-images.githubusercontent.com/77925576/165174292-ed5b1cc0-0516-40ec-89f9-aa6de7de833f.png)
 
-5. Make sure you are in `/home/jupyter` directory and then execute command `dp init https://github.com/getindata/data-pipelines-cli-init-example`. This will initialize dp-cli tool in the environment. Provide any username when prompted.
+5. Make sure you are in `/home/jupyter` directory and then execute command:
+`dp init https://github.com/getindata/data-pipelines-cli-init-example`
+This will initialize dp-cli tool in the environment. Provide any username when prompted.
 
 >-> Tip: when copy+pasting for the 1st time, you might be asked for permissions to access your clipboard by Chrome. Accept.
 
-6. Run `dp create .` This command will create a full data-pipelines-cli environment with dbt project as a core part of it. IMPORTANT: provide __dataops-test-project__ as a GCP project name. #TODO
+6. Run `dp create .`  This command will create a full data-pipelines-cli environment with dbt project as a core part of it.
+From options choose 'pipeline-project'
+<p align="center">
+<img height="100" alt="image" src="https://user-images.githubusercontent.com/54064594/191789935-59c8b12b-a2b0-4f64-ab67-fcd5866fa38c.png" align="center">
+</p>
+
+For "gcp_dev_project_id" and "gcp_prod_project_id"  provide the same project id: `datamass-mdp-workshop`. For the rest questions you can answer as follow:
+<p align="center">
+<img width="460" alt="image" src="https://user-images.githubusercontent.com/54064594/191799731-6399b7df-b254-44fb-9ca8-0c2009834b9b.png">
+</p>
+IMPORTANT: provide __dataops-test-project__ as a GCP project name. #TODO
 
 >-> Tip: when prompted, you can simply press ENTER to use default values. Don't use it for GCP Project ID!
 
