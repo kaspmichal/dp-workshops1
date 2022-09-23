@@ -15,6 +15,7 @@ Target environment will be Google Cloud Platform's: BigQuery, Vertex AI Managed 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/54064594/191755592-58e86b63-3cc2-4392-8c50-3be722ae1d2c.png" height="500" align="center">
    
+   
 <img src="https://user-images.githubusercontent.com/54064594/191755932-d96c6cad-7b8e-454e-abcc-50b4af7765f3.png" width="600" align="center">
 </p>
 
@@ -76,17 +77,6 @@ For "gcp_dev_project_id" and "gcp_prod_project_id"  provide the same project id:
 <p align="center">
 <img width="460" alt="image" src="https://user-images.githubusercontent.com/54064594/191799731-6399b7df-b254-44fb-9ca8-0c2009834b9b.png">
 </p>
-IMPORTANT: provide __dataops-test-project__ as a GCP project name. #TODO
-
->-> Tip: when prompted, you can simply press ENTER to use default values. Don't use it for GCP Project ID!
-
->-> Tip: use underscores _
-
->-> Tip: Example of provided values
-> 
->![](https://user-images.githubusercontent.com/77925576/165175393-660a9fec-9a07-4179-93bd-abd337f9d285.png)
-
-
 7. Your environment is now ready to execute some dbt code against BigQuery dwh!
 
 ## Loading data to dwh with dbt seed
