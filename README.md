@@ -29,7 +29,8 @@ Target environment will be Google Cloud Platform's: BigQuery, Vertex AI Managed 
 </p>
 3. Type in notebook name (preferrably your first and last name).
 4. In environment section, choose Debian 10 and "Custom container"
-5. Provide a link to the GID DataOps CLI image: [gcr.io/getindata-images-public/jupyterlab-dataops:bigquery-1.0.9](gcr.io/getindata-images-public/jupyterlab-dataops:bigquery-1.0.9)
+5. Provide a link to the GID DataOps CLI image: `gcr.io/getindata-images-public/jupyterlab-dataops:bigquery-1.0.9`
+
 <p align="center">
 <img width="539" alt="image" src="https://user-images.githubusercontent.com/54064594/191758015-10e4d023-5fe7-4f9c-8fa2-f6818ae20484.png" align="center">
 </p>
