@@ -1,0 +1,16 @@
+version: 2
+
+seeds:
+  - name: mapping_tracking
+    description: ""
+    columns:
+      - name: id
+        description: ""
+      - name: app_name
+        description: ""
+      - name: browser_name
+        description: ""
+      - name: date_from
+        description: ""
+      - name: date_to
+        description: ""
