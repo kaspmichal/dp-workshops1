@@ -145,7 +145,7 @@ age_range,daily_mobile_usage,daily_pc_usage
 55-64,1.42,3.11
 ````
 5. Execute `dp seed`
-6. You should now have a mapping_tracking table inside your personal working schema
+6. You should now have a daily_internet_usage table inside your personal working schema
 https://console.cloud.google.com/bigquery?project=datamass-mdp-workshop&supportedpurview=project&ws=!1m0
 
 <img width="485" alt="image" src="https://user-images.githubusercontent.com/54064594/192389936-44a85578-93c3-40a6-ab22-4c74c2aef2cd.png">
