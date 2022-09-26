@@ -133,7 +133,7 @@ seeds:
         description: ""
 ````
 >-> Tip: you can find documentation on seeds with examples at https://docs.getdbt.com/docs/building-a-dbt-project/seeds
-3. Create a csv file of the exact same name as the .yml file i.e daily_internet_usage.csv and copy+paste the data there from a file inside this repository.
+3. Create a csv file of the exact same name as the .yml file i.e daily_internet_usage.csv.
 
 csv file:
 ````
@@ -158,9 +158,98 @@ Using our freshly supplied data we can now prepare a basic dbt transformation wh
 inside the `models` directory of the project. A model is a `SELECT` statement inside .sql file which paired with a definition
 from corresponding .yml file together allows to materialize an object (table, view..) inside the dwh.
 
-1. The request for a dashboard was to investigate how many events entries are in the `events` table for every pair 'browser-tracking software' app.
-2. The task for you is to finish the query below, insert it into SQL file
-3. Create and fill in a .yml file which corresponds to the SQL with column names and description
+The request for a dashboard was to investigate what is correlation between duration of daily internet (from seed) usage and number of purchases made from events table.
+
+1. First we need to add sources to our model. We need pull out information from users table [age] and from events table [number of purchases made].
+a) To define source with user informations we need to create in our model .yml file as follow:
+````
+version: 2
+
+sources:
+- name: raw_ecommerce_eu
+  tables:
+  - name: users
+    description: ''
+    tags: ['users']
+    columns:
+    - name: id
+      description: ''
+      tests:
+        - unique
+        - not_null
+    - name: first_name
+      description: ''
+    - name: last_name
+      description: ''
+    - name: email
+      description: ''
+    - name: age
+      description: ''
+    - name: gender
+      description: ''
+    - name: state
+      description: ''
+    - name: street_address
+      description: ''
+    - name: postal_code
+      description: ''
+    - name: city
+      description: ''
+    - name: country
+      description: ''
+    - name: latitude
+      description: ''
+    - name: longitude
+      description: ''
+    - name: traffic_source
+      description: ''
+    - name: created_at
+      description: ''
+````
+b) To define source with events informations we need to create in our model .yml file as follow:
+
+````
+version: 2
+
+sources:
+- name: raw_ecommerce_eu
+  tables:
+  - name: events
+    description: ''
+    tags: ['events']
+    columns:
+    - name: id
+      description: ''
+      tests:
+        - unique
+        - not_null
+    - name: user_id
+      description: ''
+    - name: sequence_number
+      description: ''
+    - name: session_id
+      description: ''
+    - name: created_at
+      description: ''
+    - name: ip_address
+      description: ''
+    - name: city
+      description: ''
+    - name: state
+      description: ''
+    - name: postal_code
+      description: ''
+    - name: browser
+      description: ''
+    - name: traffic_source
+      description: ''
+    - name: uri
+      description: ''
+    - name: event_type
+      description: ''
+````
+2. Now it is time to create .sql file.  We will join two sources (events and user) and one "seed" (daily_internet_usage) which allows us  to create one model `internet_usage`.
+This .sql file should be as follow:
 ````
 {{
    config(
@@ -168,33 +257,80 @@ from corresponding .yml file together allows to materialize an object (table, vi
   )
 }}
 
-with mapping_tracking_converted_unix_epochs as (
-   select 
-      id, 
-      app_name, 
-      browser_name, 
-      date_from, 
-      case when date_to = 0 then null else date_to end as date_to 
-   from `datamass-mdp-workshop.<your_schema_name>.mapping_tracking` 
-)
-select
-   distinct(concat(app_name, browser)) as app_name_browser, 
-   timestamp_seconds(date_from) as date_from, 
-   case 
-      when date_to != 0 then timestamp_seconds(cast (date_to as int64)) 
-      else TIMESTAMP_TRUNC(current_timestamp , SECOND) 
-   end as date_to
-FROM mapping_tracking_converted_unix_epochs a 
-INNER JOIN `datamass-mdp-workshop.raw_ecommerce_eu.events` b on 
-   a.browser_name=b.browser
+WITH
+  users_table AS (
+  SELECT
+    id,
+    age,
+    CASE
+      WHEN age BETWEEN 16 AND 24 THEN '16-24'
+      WHEN age BETWEEN 25 AND 34 THEN '25-34'
+      WHEN age BETWEEN 35 AND 44 THEN '35-44'
+      WHEN age BETWEEN 45 AND 54 THEN '45-54'
+      WHEN age BETWEEN 55 AND 64 THEN '55-64'
+    ELSE
+    'lack of data'
+  END
+    AS user_age_range,
+  FROM
+    {{ SOURCE('raw_ecommerce_eu',
+      'users') }} ),
+  internet_usage AS (
+  SELECT
+    age_range,
+    daily_mobile_usage,
+    daily_pc_usage
+  FROM
+    {{ ref('daily_internet_usage') }} ),
+  modif AS (
+  SELECT
+    id AS user_id_,
+    user_age_range,
+    daily_mobile_usage,
+    daily_pc_usage
+  FROM
+    users_table
+  LEFT JOIN
+    internet_usage
+  ON
+    user_age_range=age_range )
+SELECT
+  user_age_range,
+  daily_mobile_usage,
+  daily_pc_usage,
+  COUNT(*) AS num_of_purchase
+FROM
+  {{ SOURCE('raw_ecommerce_eu',
+    'events') }}
+LEFT JOIN
+  modif
+ON
+  modif.user_id_=user_id
+WHERE
+  event_type='purchase'
+GROUP BY
+  user_age_range,
+  daily_mobile_usage,
+  daily_pc_usage
+ORDER BY
+  COUNT(*) desc
 ````
-While yml file should looks like this:
-````
+3. Last step is to create .yml file with metadata of our newly created model:
+```` 
 version: 2
 
 models:
-  - name: events
-    description: ""
+- name: internet_usage
+  description: ''
+  columns:
+  - name: user_age_range
+    description: ''
+  - name: daily_mobile_usage
+    description: ''
+  - name: daily_pc_usage
+    description: ''
+  - name: daily_pc_usage
+    description: ''
 ````
 ### (Optional) Add generic test and description 
 [To do]
