@@ -109,12 +109,12 @@ It is a dataset which resembles a typical ecommerce shop data warehouse, with ev
 Those tables could've been extracted from different companies' backend applications' databases and collected to a single schema.  
 
 Here, we will want to extend this dataset by "seeding" (loading) additional data into dwh.
-This additional data is a static mapping table **mapping_tracking** and was sent to you by someone from the software department
+This additional data is a static mapping table **daily_internet_usage** and was sent to you by someone from the software department
 in the form of csv file. This table contains information about software that had been used throughout company's history to track users' behavior across different user sessions and will help prepare a transformation leading to the
-final requested dashboard. The mapping is between **browser_name** and **browser** in `events` table ('Chrome', 'IE', 'Safari'..)
+final requested dashboard. The mapping is between **age_range** and **age** in `Users` table 
 
 To load this data into the warehouse, you will use dbt command called `dbt seed` by executing `dp seed` in the main project directory.
-1. You need to set up a .yml file which will serve as a definition of this new table. You need to provide .yml file with the name of the table i.e. mapping_tracking.yml. Put it under `seeds` directory of your dbt project. You can make additional directories inside `seeds` for clarity.
+1. You need to set up a .yml file which will serve as a definition of this new table. You need to provide .yml file with the name of the table i.e. daily_internet_usage.yml. Put it under `seeds` directory of your dbt project. You can make additional directories inside `seeds` for clarity.
 
 
 yaml file should look like this:
@@ -122,41 +122,34 @@ yaml file should look like this:
 version: 2
 
 seeds:
-  - name: mapping_tracking
+  - name: daily_internet_usage
     description: ""
     columns:
-      - name: id
+      - name: age_range
         description: ""
-      - name: app_name
+      - name: daily_mobile_usage
         description: ""
-      - name: browser_name
-        description: ""
-      - name: date_from
-        description: ""
-      - name: date_to
+      - name: daily_pc_usage
         description: ""
 ````
 >-> Tip: you can find documentation on seeds with examples at https://docs.getdbt.com/docs/building-a-dbt-project/seeds
-3. Create a csv file of the exact same name as the .yml file i.e mapping_tracking.csv and copy+paste the data there from a file inside this repository.
+3. Create a csv file of the exact same name as the .yml file i.e daily_internet_usage.csv and copy+paste the data there from a file inside this repository.
 
 csv file:
 ````
-id,app_name,browser_name,date_from,date_to
-1,GoogleAnalytics,Chrome,1335841200,1609473600
-2,Segment,Chrome,1609473601,0
-3,iTracker,Safari,1335841200,1420084800
-4,SuperSafariTracker,Safari,1420084801,1609473600
-5,Segment,Safari,1609473601,0
-6,Macrotrack,IE,1335841200,1404183600
-7,GoogleAnalytics,IE,1404183601,1609473600
-8,Segment,IE,1609473601,0
-9,Macrotrack,Firefox,1335841200,0
-9,Macrotrack,Other,1335841200,0
+age_range,daily_mobile_usage,daily_pc_usage
+16-24,4.1,3.3
+25-34,3.45,3.37
+35-44,3.05,3.21
+45-54,2.22,3.23
+55-64,1.42,3.11
 ````
 5. Execute `dp seed`
 6. You should now have a mapping_tracking table inside your personal working schema
 https://console.cloud.google.com/bigquery?project=datamass-mdp-workshop&supportedpurview=project&ws=!1m0
-<img width="767" alt="image" src="https://user-images.githubusercontent.com/54064594/191948887-8d9f96f4-36b6-4ac9-8ea0-5f895c7438be.png">
+
+<img width="485" alt="image" src="https://user-images.githubusercontent.com/54064594/192389936-44a85578-93c3-40a6-ab22-4c74c2aef2cd.png">
+
 
 
 ## Basic SQL transformation using dp run
