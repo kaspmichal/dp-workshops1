@@ -42,6 +42,18 @@ Target environment will be Google Cloud Platform's: BigQuery, Vertex AI Managed 
 9. Wait until it spuns up correctly and click on "Open Jupyterlab"
 
 You can find full documentation of our GID DataOps CLI tool on https://github.com/getindata/data-pipelines-cli and also https://data-pipelines-cli.readthedocs.io/en/latest/index.html
+## Creating new [empty] project in github
+We need to create new project in github before we create our first dp project.
+1. Go to github: https://github.com/ and login
+2. Click on "New repository" to start creating:
+<img width="1001" alt="image" src="https://user-images.githubusercontent.com/54064594/192232152-69bf7586-9a3d-437e-b643-2e34b8396849.png">
+3. Fill in the field "Repository name" and check the box with "Add a README file"
+<img width="640" alt="image" src="https://user-images.githubusercontent.com/54064594/192244840-81d44177-6746-412b-a9ec-aa5e85db742f.png">
+<img width="461" alt="image" src="https://user-images.githubusercontent.com/54064594/192245076-4d5ecf53-44eb-4abd-ba07-a1966b07b0f9.png">
+
+Other settings can remain default
+
+
 
 ## Inside the notebook with GID DataOps CLI
 You are now inside managed Vertex AI Workbench instance, which will serve as our data pipelines development workflow. This image lets you open:
@@ -67,8 +79,12 @@ In this tutorial, we will only cover on how to operate within VSCode Instance.
 This will initialize dp-cli tool in the environment. Provide any username when prompted.
 
 >-> Tip: when copy+pasting for the 1st time, you might be asked for permissions to access your clipboard by Chrome. Accept.
+6. Now you will clone previously created repository.
+- go to github and copy HTTPS code:
+<img width="993" alt="image" src="https://user-images.githubusercontent.com/54064594/192251169-2e8e479e-020f-4298-be8a-202a5271fcfa.png">
+- come back to notebook and type in: `git clone https://github.com/<address>.git`
 
-6. Run `dp create .`  This command will create a full data-pipelines-cli environment with dbt project as a core part of it.
+6. Run `dp create <<<your_cloned_project/>>> `  This command will create a full data-pipelines-cli environment with dbt project as a core part of it.
 From options choose 'pipeline-project'
 
 <img height="100" alt="image" src="https://user-images.githubusercontent.com/54064594/191789935-59c8b12b-a2b0-4f64-ab67-fcd5866fa38c.png" >
