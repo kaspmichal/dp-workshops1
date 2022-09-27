@@ -329,7 +329,7 @@ models:
     description: ''
   - name: daily_pc_usage
     description: ''
-  - name: daily_pc_usage
+  - name: num_of_purchase
     description: ''
 ````
 ![image](https://user-images.githubusercontent.com/54064594/192458791-8aa10623-23b3-46b2-8a80-4cf48b0b67e2.png)
@@ -342,8 +342,19 @@ Execute the command
 This process will look at the contents of the models directory and create coresponding tables or views in our BigQuery Dataset:
 ![image](https://user-images.githubusercontent.com/54064594/192472426-239f22a7-c9df-46de-b0de-80f8cb6c4bc5.png)
 
-### (Optional) Add generic test and description 
-[To do]
+### Add generic test 
+
+Now after table is created we can also check, if the model work as intended by running the tests. We can have tests that check if the logic behind a query works as intended for a set of data. 
+Let's define sample test in .yml file as follow:
+
+![image](https://user-images.githubusercontent.com/54064594/192478028-2138b9f9-7cc2-43a8-a856-6f4e4e5af1e4.png)
+
+Let's run the tests.
+`dp test`
+![image](https://user-images.githubusercontent.com/54064594/192480266-1ad18a5d-b85a-4d9e-9a3e-171b94e17ced.png)
+
+We should be able to see the summary, we can see if everything with our models is fine and there are no errors.
+
 ### (Optional) Inspect lineage graph
 [To do]
 ## 
