@@ -335,6 +335,12 @@ models:
 ![image](https://user-images.githubusercontent.com/54064594/192458791-8aa10623-23b3-46b2-8a80-4cf48b0b67e2.png)
 
 Now we should be ready to run our models. In the models folder of our template we have specified 1 model that uses the 1 seed table and 2 sources from bigQuery.
+Execute the command
+`dp run`
+![image](https://user-images.githubusercontent.com/54064594/192470862-d2403525-3c81-4688-ab25-f1a436057c3a.png)
+
+This process will look at the contents of the models directory and create coresponding tables or views in our BigQuery Dataset:
+![image](https://user-images.githubusercontent.com/54064594/192472426-239f22a7-c9df-46de-b0de-80f8cb6c4bc5.png)
 
 ### (Optional) Add generic test and description 
 [To do]
