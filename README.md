@@ -345,7 +345,7 @@ This process will look at the contents of the models directory and create coresp
 ### Add generic test 
 
 Now after table is created we can also check, if the model work as intended by running the tests. We can have tests that check if the logic behind a query works as intended for a set of data. 
-Let's define sample test in .yml file as follow:
+Let's define three sample tests in .yml file as follow:
 
 ![image](https://user-images.githubusercontent.com/54064594/192478028-2138b9f9-7cc2-43a8-a856-6f4e4e5af1e4.png)
 
