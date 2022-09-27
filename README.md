@@ -334,6 +334,8 @@ models:
 ````
 ![image](https://user-images.githubusercontent.com/54064594/192458791-8aa10623-23b3-46b2-8a80-4cf48b0b67e2.png)
 
+Now we should be ready to run our models. In the models folder of our template we have specified 1 model that uses the 1 seed table and 2 sources from bigQuery.
+
 ### (Optional) Add generic test and description 
 [To do]
 ### (Optional) Inspect lineage graph
