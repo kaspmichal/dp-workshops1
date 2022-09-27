@@ -75,7 +75,7 @@ In this tutorial, we will only cover on how to operate within VSCode Instance.
 ![Screenshot 2022-04-25 at 23 01 27](https://user-images.githubusercontent.com/77925576/165174292-ed5b1cc0-0516-40ec-89f9-aa6de7de833f.png)
 
 5. Make sure you are in `/home/jupyter` directory and then execute command:
-`dp init https://github.com/getindata/data-pipelines-cli-init-example`
+`dp init https://gitlab.com/datamass-mdp-workshop/mdp-project-template`
 This will initialize dp-cli tool in the environment. Provide any username when prompted.
 
 >-> Tip: when copy+pasting for the 1st time, you might be asked for permissions to access your clipboard by Chrome. Accept.
@@ -354,7 +354,44 @@ Let's run the tests.
 ![image](https://user-images.githubusercontent.com/54064594/192480266-1ad18a5d-b85a-4d9e-9a3e-171b94e17ced.png)
 
 We should be able to see the summary, we can see if everything with our models is fine and there are no errors.
+### Add documentation 
+At the end let's add some descriptions to our model and generate project documentation.
+1) adding descriptions - go to internet_usage_report.yml file and make changes. 
+Anyway feel free to add description to model, columns, sources, seeds.
+Good documentation is priceless.
+Below is example how internet_usage_report.yml can look like after modifications:
+````
+version: 2
 
-### (Optional) Inspect lineage graph
-[To do]
+models:
+- name: internet_usage
+  description: 'This table consits average duration of daily internet usage worldwide'
+  columns:
+  - name: user_age_range
+    description: 'age range of the study group'
+    tests:
+    - unique
+    - not_null
+  - name: daily_mobile_usage
+    description: 'average duration of daily mobile internet usage'
+  - name: daily_pc_usage
+    description: 'average duration of daily pc internet usage'
+  - name: num_of_purchase
+    description: 'number of purchuase made'
+    tests:
+    - not_null
+````
+To serve local docs you need compile project:
+`dp compile --env local`
+After that you can run:
+`dp docs-serve`
+To view documentation please go File-->New Launcher and choose "DBT Docs"
+Now you should be able to view your newly created documentation:
+![image](https://user-images.githubusercontent.com/54064594/192511736-09bc9914-5479-4c56-9008-fe6ef85e8c1c.png)
+
+### Inspect lineage graph
+To review lineage graph please just click on icon of "lineage graph" from previous screen (right-bottom corner).
+Now you are able to see lineage:
+![image](https://user-images.githubusercontent.com/54064594/192516100-781a00ac-1058-4607-95c3-a872fd5ffb70.png)
+
 ## 
