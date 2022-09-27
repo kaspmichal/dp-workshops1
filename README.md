@@ -174,9 +174,6 @@ sources:
     columns:
     - name: id
       description: ''
-      tests:
-        - unique
-        - not_null
     - name: first_name
       description: ''
     - name: last_name
@@ -206,6 +203,8 @@ sources:
     - name: created_at
       description: ''
 ````
+![image](https://user-images.githubusercontent.com/54064594/192459337-de0b115b-26ce-4fbc-8ce6-144102bdf0c5.png)
+
 b) To define source with events informations we need to create in our model .yml file as follow:
 
 ````
@@ -220,9 +219,6 @@ sources:
     columns:
     - name: id
       description: ''
-      tests:
-        - unique
-        - not_null
     - name: user_id
       description: ''
     - name: sequence_number
@@ -248,6 +244,8 @@ sources:
     - name: event_type
       description: ''
 ````
+![image](https://user-images.githubusercontent.com/54064594/192459234-e292f197-54b7-42c7-9aaa-a39b8363b4c5.png)
+
 2. Now it is time to create .sql file.  We will join two sources (events and user) and one "seed" (daily_internet_usage) which allows us  to create one model `internet_usage`.
 This .sql file should be as follow:
 ````
@@ -315,6 +313,8 @@ GROUP BY
 ORDER BY
   COUNT(*) desc
 ````
+![image](https://user-images.githubusercontent.com/54064594/192458432-c81c4244-fc8c-47f0-874b-4cee81a6ff08.png)
+
 3. Last step is to create .yml file with metadata of our newly created model:
 ```` 
 version: 2
@@ -332,6 +332,8 @@ models:
   - name: daily_pc_usage
     description: ''
 ````
+![image](https://user-images.githubusercontent.com/54064594/192458791-8aa10623-23b3-46b2-8a80-4cf48b0b67e2.png)
+
 ### (Optional) Add generic test and description 
 [To do]
 ### (Optional) Inspect lineage graph
