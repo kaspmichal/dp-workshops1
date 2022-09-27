@@ -392,6 +392,8 @@ Now you should be able to view your newly created documentation:
 ### Inspect lineage graph
 To review lineage graph please just click on icon of "lineage graph" from previous screen (right-bottom corner).
 Now you are able to see lineage:
+
 ![image](https://user-images.githubusercontent.com/54064594/192516100-781a00ac-1058-4607-95c3-a872fd5ffb70.png)
 
 ## 
+
